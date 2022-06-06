@@ -1,0 +1,9 @@
+<header [ngClass]="{'lightMode': message, 'lightModeShadow': message}">
+    <h1 [routerLink]="['/countries']" >World Explorer</h1>
+    <div class="modeSelector">       
+        <img [class.lightMode]="lightMode" class="moon" src="../../assets/moon-solid.svg" alt=""   (click) = "toggleMode()" >
+       
+        <h2>{{lightMode ? "Light" : "Dark"}} Mode</h2>
+    </div>
+</header>
+<router-outlet [class.lightMode]="lightMode" class="lightMode"></router-outlet>

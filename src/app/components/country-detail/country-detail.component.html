@@ -1,0 +1,110 @@
+<div class="countryDetail" [ngClass]="{'lightMode': message}">
+    <div class="btnContainer">
+        <button class="btn btn-outline-secondary" (click)='onBack()'
+            [ngClass]="{'lightMode': message, 'lightModeShadow': message}">
+            Back
+        </button>
+        <svg aria-hidden="true" focusable="false" data-prefix="fas" data-icon="arrow-left"
+            class="svg-inline--fa fa-arrow-left fa-w-14" role="img" xmlns="http://www.w3.org/2000/svg"
+            viewBox="0 0 448 512">
+            <path fill="currentColor" [ngClass]="{'lightModeSvg': message}"
+                d="M257.5 445.1l-22.2 22.2c-9.4 9.4-24.6 9.4-33.9 0L7 273c-9.4-9.4-9.4-24.6 0-33.9L201.4 44.7c9.4-9.4 24.6-9.4 33.9 0l22.2 22.2c9.5 9.5 9.3 25-.4 34.3L136.6 216H424c13.3 0 24 10.7 24 24v32c0 13.3-10.7 24-24 24H136.6l120.5 114.8c9.8 9.3 10 24.8.4 34.3z">
+            </path>
+        </svg>
+
+        <button class="btn btn-outline-secondary" 
+                    [ngClass]="{'lightMode': message, 'lightModeShadow': message}">
+                    Add to Bookmark
+        </button>
+        <svg aria-hidden="true" focusable="false" xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-bookmark" viewBox="0 0 16 16">
+            <path fill="currentColor" [ngClass]="{'lightModeSvg': message}"
+            d="M2 2a2 2 0 0 1 2-2h8a2 2 0 0 1 2 2v13.5a.5.5 0 0 1-.777.416L8 13.101l-5.223 2.815A.5.5 0 0 1 2 15.5V2zm2-1a1 1 0 0 0-1 1v12.566l4.723-2.482a.5.5 0 0 1 .554 0L13 14.566V2a1 1 0 0 0-1-1H4z"/> 
+        </svg>
+
+    </div>
+    <div class="container">
+        <!-- <div> -->
+            <img [src]="flag" alt="" [ngClass]="{'lightMode': message, 'lightModeShadow': message}">
+        <!-- <button></button>
+        </div> -->
+        
+        <div class="countryInfor">
+            <div class="mainDetails">
+                <div class="primaryCountryDetails">
+                    <h2 [ngClass]="{'lightMode': message}">{{name | uppercase}}</h2>
+                    <p [ngClass]="{'lightMode': message}" >Native name  <span>: {{nativeName}}</span> </p>
+                    <p [ngClass]="{'lightMode': message}">Population &nbsp;&nbsp; <span>: {{population | number}}</span> </p>
+                    <p [ngClass]="{'lightMode': message}">Region &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; <span>:&nbsp; {{region}}</span></p>
+                    <p [ngClass]="{'lightMode': message}">Sub region &nbsp; <span>: {{subregion}}</span></p>
+                    <p [ngClass]="{'lightMode': message}">Capital &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; <span>: {{capital}}</span></p>
+                </div>
+            </div>
+            <div class="secondaryCountryDetails">
+                <p [ngClass]="{'lightMode': message}">Top Level dormain: '{{tld}}'</p>
+                <div class="currency" [ngClass]="{'lightMode': message}">
+                    Currencies :
+                    <span *ngFor="let myCurrent of resultCurrency; let i=index">
+                        <span *ngIf="i>0 && i < resultCurrency.length-1;then ifblock else elseblock"></span>
+                            <ng-template #ifblock>{{myCurrent}} ,</ng-template>
+                            <ng-template #elseblock>{{myCurrent}} </ng-template>
+                        <span *ngIf="i>0">
+                            {{myCurrent}} ,
+                        </span>
+                    </span>
+                </div>
+                <div class="langauges" [ngClass]="{'lightMode': message}">
+                    Languages :
+                    <span *ngFor="let lang of resultLang; let i = index">
+                        <span *ngIf="i>0  && i < resultLang.length-1;then ifblock else elseblock"></span>
+                            <ng-template #ifblock>{{lang}} ,</ng-template>
+                            <ng-template #elseblock>{{lang}} </ng-template>
+                        <!-- <span *ngIf="i == resultLang.length-1">
+                            {{lang}} 
+                        </span>
+                        {{lang}}, -->
+                    </span>
+                </div>
+            </div>
+            <div class="borderDetails">
+                <h4 [ngClass]="{'lightMode': message}">Border</h4>
+                <div class="borders" (click)="changeCountry($event)">
+                    <button class="borderCty" *ngFor="let borderCountry of borderingCountries"
+                        [ngClass]="{'lightMode': message, 'lightModeShadow': message}">
+                        {{borderCountry}}
+                    </button>
+                
+                </div>
+            </div>
+            <!-- <div>
+                <div>
+                    <button class="btn btn-outline-secondary" (click)='onBack()'
+                    [ngClass]="{'lightMode': message, 'lightModeShadow': message}">
+                    Add to Bookmark
+                </button>
+                    <svg aria-hidden="true" focusable="false" xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-bookmark" viewBox="0 0 16 16">
+                         <path fill="currentColor" [ngClass]="{'lightModeSvg': message}"
+                         d="M2 2a2 2 0 0 1 2-2h8a2 2 0 0 1 2 2v13.5a.5.5 0 0 1-.777.416L8 13.101l-5.223 2.815A.5.5 0 0 1 2 15.5V2zm2-1a1 1 0 0 0-1 1v12.566l4.723-2.482a.5.5 0 0 1 .554 0L13 14.566V2a1 1 0 0 0-1-1H4z"/> </svg>
+                </div>
+            </div> -->
+        </div>
+    </div>
+</div>
+<!-- Recommended Countries from the same continent -->
+<div class="wrapper" [ngClass]="{'lightMode': message}">
+    <div class="btn-explore-Container">
+        <h6 [ngClass]="{'lightMode': message, 'lightModeShadow': message}">Explore More Countries From {{ region }}</h6>
+    </div>
+    
+    <div [ngClass]="{'lightMode': message, 'lightModeShadow': message}" class="container-rec">
+        <div class="main" *ngFor="let country of filteredCountries">
+            <img [src]="country.flags.png" alt="{{country.name.common}}" (click)=navigateToDest(country.name.common) 
+                [ngClass]="{'lightMode': message, 'lightModeShadow': message}">
+            <div class="details" [ngClass]="{'lightMode': message, 'lightModeShadow': message}">
+                <h3 [ngClass]="{'lightMode': message}">{{country.name.common}}</h3>
+                <h4 [ngClass]="{'lightMode': message}">Population:<span> {{country.population | number}}</span></h4>
+                <h4 [ngClass]="{'lightMode': message}">Region: <span>{{country.region}}</span></h4>
+                <h4 [ngClass]="{'lightMode': message}">Capital: <span> {{country.capital}}</span></h4>
+            </div>
+        </div>
+    </div>
+</div>
